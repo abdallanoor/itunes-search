@@ -59,27 +59,29 @@ export default function Home() {
   };
 
   return (
-    <main className="container mt-16">
-      <LandingSection />
-      <SearchSuggestions onSearch={handleSearch} />
-      <SearchInput onSearch={handleSearch} isLoading={isLoading} />
-      <ResultsSection
-        results={results}
-        isLoading={isLoading}
-        error={error}
-        hasSearched={hasSearched}
-        currentSearchTerm={currentSearchTerm}
-        onRetry={handleRetry}
-        currentEpisode={currentEpisode}
-        setCurrentEpisode={setCurrentEpisode}
-      />
-
-      {currentEpisode && (
-        <EpisodePlayer
-          episode={currentEpisode}
-          onClose={() => setCurrentEpisode(null)}
+    <main className="container">
+      <div className="my-16">
+        <LandingSection />
+        <SearchSuggestions onSearch={handleSearch} />
+        <SearchInput onSearch={handleSearch} isLoading={isLoading} />
+        <ResultsSection
+          results={results}
+          isLoading={isLoading}
+          error={error}
+          hasSearched={hasSearched}
+          currentSearchTerm={currentSearchTerm}
+          onRetry={handleRetry}
+          currentEpisode={currentEpisode}
+          setCurrentEpisode={setCurrentEpisode}
         />
-      )}
+
+        {currentEpisode && (
+          <EpisodePlayer
+            episode={currentEpisode}
+            onClose={() => setCurrentEpisode(null)}
+          />
+        )}
+      </div>
     </main>
   );
 }
