@@ -6,6 +6,6 @@ export interface Podcast {
   feedUrl?: string | null;
   genre?: string | null;
   country?: string | null;
-  releaseDate?: string | null;
+  releaseDate?: Date | null;
   trackCount?: number | null;
 }
