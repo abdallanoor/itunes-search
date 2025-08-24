@@ -18,6 +18,9 @@ export class EpisodesService {
       },
     });
 
+    const podcastInfo = data.results?.find((item: any) => item.wrapperType === "collection" || item.wrapperType === "track");
+    const artistName = podcastInfo?.artistName || null;
+
 
     const items: Episode[] = (data.results || [])
       .filter((ep: any) => ep.wrapperType === "podcastEpisode")
@@ -30,7 +33,8 @@ export class EpisodesService {
         previewUrl: ep.previewUrl || ep.episodeUrl || null,
         artworkUrl: ep.artworkUrl600 || ep.artworkUrl160 || null,
         episodeNumber: ep.episodeNumber || null,
-        seasonNumber: ep.seasonNumber || null
+        seasonNumber: ep.seasonNumber || null,
+        artistName: artistName,
       }));
 
     return items;

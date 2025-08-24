@@ -117,7 +117,7 @@ export function EpisodePlayer({ episode, onClose }: EpisodePlayerProps) {
                 {episode.title}
               </h4>
               <p className="text-xs md:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                {episode.description}
+                {episode.artistName}
               </p>
               {hasError && (
                 <div className="flex items-center gap-1 mt-1 text-xs text-destructive">
@@ -136,7 +136,7 @@ export function EpisodePlayer({ episode, onClose }: EpisodePlayerProps) {
             </Button>
           </div>
 
-          <div className="space-y-2 md:space-y-0 md:flex md:items-center md:gap-4">
+          <div className="md:flex md:items-center md:gap-4">
             <div className="flex items-center gap-2 order-1 md:order-2 flex-1">
               <Button
                 size="sm"
@@ -167,7 +167,7 @@ export function EpisodePlayer({ episode, onClose }: EpisodePlayerProps) {
               </span>
             </div>
 
-            <div className="flex items-center gap-2 order-3 justify-center md:justify-start">
+            <div className="flex items-center gap-2 order-3 justify-center md:justify-start max-md:hidden">
               {volume === 0 ? (
                 <VolumeX className="w-4 h-4 text-muted-foreground" />
               ) : (

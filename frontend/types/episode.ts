@@ -8,4 +8,5 @@ export interface Episode {
   artworkUrl?: string
   episodeNumber?: number
   seasonNumber?: number
+  artistName?: string;
 }
