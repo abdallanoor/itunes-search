@@ -26,7 +26,7 @@ export class SearchService {
 
     try {
       const encodedTerm = encodeURIComponent(searchTerm);
-      const itunesUrl = `https://itunes.apple.com/search?media=podcast&term=${encodedTerm}&limit=50`;
+      const itunesUrl = `https://itunes.apple.com/search?media=podcast&term=${encodedTerm}&limit=50&lang=ar`;
 
       const response = await axios.get(itunesUrl, {
         timeout: 10000,
@@ -43,7 +43,7 @@ export class SearchService {
         feedUrl: item.feedUrl || null,
         genre: Array.isArray(item.genres) ? item.genres[0] : item.primaryGenreName || null,
         country: item.country || null,
-        releaseDate: item.releaseDate ? new Date(item.releaseDate) : null,
+        releaseDate: item.releaseDate || null,
         trackCount: item.trackCount || null,
         description: item.description || null,
       }));
