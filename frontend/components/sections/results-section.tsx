@@ -6,8 +6,8 @@ import { Podcast } from "@/types/podcast";
 import { useEffect, useState } from "react";
 import { EpisodeList } from "../episodes/episode-list";
 import { Episode } from "@/types/episode";
-import { Search } from "lucide-react";
 import { formatNumber } from "@/lib/utils";
+import { Search } from "lucide-react";
 
 interface ResultsSectionProps {
   results: Podcast[];
@@ -26,7 +26,6 @@ export default function ResultsSection({
   hasSearched,
   currentSearchTerm,
   onRetry,
-  currentEpisode,
   setCurrentEpisode,
 }: ResultsSectionProps) {
   const [selectedPodcast, setSelectedPodcast] = useState<Podcast | null>(null);
@@ -49,7 +48,6 @@ export default function ResultsSection({
           podcastName={selectedPodcast.name}
           podcastArtwork={selectedPodcast.artworkUrl}
           onBack={handleBackToResults}
-          currentEpisode={currentEpisode}
           setCurrentEpisode={setCurrentEpisode}
         />
       </section>
