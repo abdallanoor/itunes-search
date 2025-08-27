@@ -20,7 +20,13 @@ interface EpisodeListProps {
   setCurrentEpisode: (episode: Episode | null) => void;
 }
 
-// Hook للتحقق من overflow
+const BackButton = ({ onBack }: { onBack: () => void }) => (
+  <Button variant="ghost" onClick={onBack}>
+    <ArrowRight className="w-4 h-4 ml-2" />
+    العودة للنتائج
+  </Button>
+);
+
 const useTextOverflow = (text: string, isExpanded: boolean) => {
   const textRef = useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -232,10 +238,7 @@ export function EpisodeList({
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <Button variant="ghost" onClick={onBack}>
-          <ArrowRight className="w-4 h-4 ml-2" />
-          العودة للنتائج
-        </Button>
+        <BackButton onBack={onBack} />
         <EpisodeLoading />
       </div>
     );
@@ -243,19 +246,19 @@ export function EpisodeList({
 
   if (error) {
     return (
-      <div className="text-center py-12 space-y-6">
-        <Button variant="ghost" onClick={onBack}>
-          <ArrowRight className="w-4 h-4 ml-2" />
-          العودة للنتائج
-        </Button>
-        <p className="text-destructive mb-4">{error}</p>
-        <Button onClick={fetchEpisodes}>إعادة المحاولة</Button>
+      <div className="space-y-6">
+        <BackButton onBack={onBack} />
+        <div className="text-center">
+          <p className="text-destructive mb-4">{error}</p>
+          <Button onClick={fetchEpisodes}>إعادة المحاولة</Button>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
+      <BackButton onBack={onBack} />
       {/* Podcast Info */}
       <Card className="bg-secondary shadow-none">
         <CardHeader>
