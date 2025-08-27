@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export function EpisodeLoading() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <Card className="animate-pulse shadow-none">
         <CardHeader>
           <div className="flex items-center gap-4">
@@ -32,7 +32,6 @@ export function EpisodeLoading() {
                 <div className="flex items-center gap-4">
                   <div className="h-3 bg-muted rounded w-24" />
                   <div className="h-3 bg-muted rounded w-16" />
-                  <div className="h-5 bg-muted rounded w-12" />
                 </div>
               </div>
             </div>
