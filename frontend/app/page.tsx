@@ -41,8 +41,6 @@ export default function Home() {
           `خطأ في الخادم: ${data?.message || "حدث خطأ غير متوقع"}`
         );
       }
-      console.log(data.results);
-
       setResults(data.results || []);
     } catch (err) {
       setError(err instanceof Error ? err.message : "حدث خطأ غير متوقع");
