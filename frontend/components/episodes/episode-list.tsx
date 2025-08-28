@@ -227,7 +227,10 @@ export function EpisodeList({
   // Memoized play episode handler
   const handlePlayEpisode = useCallback(
     (episode: Episode) => {
-      setCurrentEpisode(episode);
+      setCurrentEpisode(null);
+      Promise.resolve().then(() => {
+        setCurrentEpisode(episode);
+      });
     },
     [setCurrentEpisode]
   );

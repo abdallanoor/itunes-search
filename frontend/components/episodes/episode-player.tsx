@@ -32,6 +32,34 @@ export function EpisodePlayer({ episode, onClose }: EpisodePlayerProps) {
     }
   }, [episode]);
 
+  useEffect(() => {
+    if ("mediaSession" in navigator && episode) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: episode.title,
+        artist: episode.artistName || "بودكاست",
+        album: "Podcast",
+        artwork: episode.artworkUrl
+          ? [{ src: episode.artworkUrl, sizes: "512x512", type: "image/png" }]
+          : [],
+      });
+
+      navigator.mediaSession.setActionHandler("play", () => {
+        audioRef.current?.play();
+        setIsPlaying(true);
+      });
+      navigator.mediaSession.setActionHandler("pause", () => {
+        audioRef.current?.pause();
+        setIsPlaying(false);
+      });
+      navigator.mediaSession.setActionHandler("seekto", (details) => {
+        if (audioRef.current && details.seekTime !== undefined) {
+          audioRef.current.currentTime = details.seekTime;
+          setCurrentTime(details.seekTime);
+        }
+      });
+    }
+  }, [episode]);
+
   const togglePlay = async () => {
     if (!audioRef.current || !episode.previewUrl) {
       console.log("No audio source available for episode:", episode.title);
@@ -95,8 +123,22 @@ export function EpisodePlayer({ episode, onClose }: EpisodePlayerProps) {
           <audio
             ref={audioRef}
             onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleLoadedMetadata}
-            onEnded={() => setIsPlaying(false)}
+            onLoadedMetadata={() => {
+              if (audioRef.current) {
+                setDuration(audioRef.current.duration);
+                audioRef.current
+                  .play()
+                  .then(() => setIsPlaying(true))
+                  .catch((err) => {
+                    console.error("Autoplay blocked:", err);
+                    setIsPlaying(false);
+                  });
+              }
+            }}
+            onEnded={() => {
+              setIsPlaying(false);
+              setCurrentTime(0);
+            }}
             onError={() => setHasError(true)}
           />
         )}
