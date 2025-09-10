@@ -1,6 +1,6 @@
 # Backend – Podcast Search API
 
-تم بناء الواجهة الخلفية باستخدام:
+## Technologies
 
 - **Nest.js**
 - **AWS DynamoDB**

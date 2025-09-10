@@ -1,6 +1,6 @@
 # Frontend – Podcast Search App
 
-تم بناء الواجهة الأمامية باستخدام:
+## Technologies
 
 - **Next.js**
 - **Tailwind CSS**
