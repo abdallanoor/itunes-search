@@ -17,8 +17,7 @@ export default function Footer() {
             </a>
           </p>
           <p className="text-xs">
-            تم تطويره بـ <Heart className="inline-block mx-0.5" size={18} />{" "}
-            لفريق ثمانية
+            تم تطويره بـ <Heart className="inline-block mx-0.5" size={18} />
           </p>
         </div>
       </div>
