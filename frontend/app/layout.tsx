@@ -5,8 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/layout/footer";
 
 export const metadata: Metadata = {
-  title: "تكليف ثمانية",
-  description: "تطبيق ويب لتكليف ثمانية",
+  title: "بودكاست",
+  description: "ابحث واستمع للبودكاست بسهولة.",
   icons: {
     icon: "/favicon.ico",
   },
